@@ -42,6 +42,9 @@ while true; do
     read -p "Do you wish to continue? (Y)es, (N)o	" yn
     case $yn in
         [Yy]*) 
+			# This framework is found withing the Xcode.app package and is used when Xcode is a monolithic install (all contained in Xcode.app)
+			DVTFountain_Path="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/"
+
 			# Create plug-ins directory if it doesn't exist
 			plugins_dir=~/Library/Developer/Xcode/Plug-ins/
 			if [ ! -d "$plugins_dir" ]; then
@@ -59,6 +62,7 @@ while true; do
 
 			# Copy the language specification to the specs directory
 			cp $Script_Path/Logos.xclangspec  $spec_dir
+			cp $Script_Path/Logos.xclangspec  $DVTFountain_Path
 
 			# Create the language metadata directory if it doesn't exist
 			metadata_dir=/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageMetadata/
@@ -71,7 +75,7 @@ while true; do
 			
 
 			# Remove any cached Xcode plugins
-			rm -rf /private/var/folders/*/*/*/com.apple.DeveloperTools/*/Xcode/PlugInCache.xcplugincache
+			rm -rf /private/var/folders/*/*/*/com.apple.DeveloperTools/*/Xcode/PlugInCache*
 
 			# Final message
 			echo "Sucessfully Installed."
