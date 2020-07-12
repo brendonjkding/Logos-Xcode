@@ -1,17 +1,15 @@
-# Logos-Xcode 
+# Logos-Xcode11+ 
 #### Logos Syntax Highlight in Xcode 
 Logos-Xcode brings Logos Syntax Hightlight to Xcode (tested on 11.3). 
 ![](imgs/xc11.3.png)
 
 ## How To Install on Xcode 11+
-0 - You should make a backup of the folder `/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources`  
-1 - Clone this repo `git clone https://github.com/brendonjkding/Logos-Xcode` to any place you want.  
-2 - Cd to the folder with `cd Logos-Xcode/src`.  
-3 - Assert that Xcode is completed terminated.  
-4 - To create `Logos.xclangspec`, run `python(3) xclangspec_generator.py`.  
-5 - Run `chmod +x install.sh`, in order to give execution rights.  
-6 - Run `sudo ./install.sh`, to run the installation script.  
-7 - The script should explain itself, just follow the instructions. 
+0 - You should make a backup of the folder `/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources`  
+1 - You should make a backup of the folder `/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources`  
+2 - Clone this repo .  
+3 - Cd to the folder with `cd Logos-Xcode/src`.  
+4 - (Important) Assert that Xcode is completed terminated.  
+5 - Run `sudo ./install.sh`, to run the installation script.  
 
 ## Credits
 
