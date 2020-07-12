@@ -45,7 +45,7 @@ global_ident3 = "StartChars = \"@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU
 class XClangGenerator(object):
     
     def __init__(self):
-        self.objc_spec_file = "/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/ObjectiveC.xclangspec"
+        self.objc_spec_file = "/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageSpecifications/ObjectiveC.xclangspec"
         self.objc_spec_content = []
         self.new_lines = []
 

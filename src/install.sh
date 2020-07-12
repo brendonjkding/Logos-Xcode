@@ -37,23 +37,38 @@ if [ ! -f $Script_Path/Logos.xclangspec ]; then
 fi
 
 
-echo "It's highly recommended that, if you are installing for the first time, you make a backup of the folder /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources"
+echo "It's highly recommended that, if you are installing for the first time, you make a backup of the folder /Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources"
 while true; do
     read -p "Do you wish to continue? (Y)es, (N)o	" yn
     case $yn in
         [Yy]*) 
-			# This framework is found withing the Xcode.app package and is used when Xcode is a monolithic install (all contained in Xcode.app)
-			DVTFountain_Path="/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/Resources/"
+			# Create plug-ins directory if it doesn't exist
+			plugins_dir=~/Library/Developer/Xcode/Plug-ins/
+			if [ ! -d "$plugins_dir" ]; then
+				mkdir $plugins_dir
+			fi
 
-			# Backup
-			cp "$DVTFountain_Path/DVTFoundation.xcplugindata" "$DVTFountain_Path/DVTFoundation.xcplugindata.bak"
+			# Copy the IDE Plugin to the plug-ins directory
+			cp -r Logos.ideplugin $plugins_dir
 
-			# Now merge in the additonal languages to DVTFoundation.xcplugindata
-			echo "Merging..."
-			/usr/libexec/PlistBuddy "$DVTFountain_Path/DVTFoundation.xcplugindata"  -c "Merge $Script_Path/AdditionalLanguages.plist plug-in:extensions"
+			# Create Specifications directory if it doesn't exist
+			spec_dir=/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageSpecifications/
+			if [ ! -d "$spec_dir" ]; then
+				mkdir $spec_dir
+			fi
 
-			# Copy in the xclangspecs for the languages (assumes in same directory as this shell script)
-			cp "$Script_Path/Logos.xclangspec" "$DVTFountain_Path"
+			# Copy the language specification to the specs directory
+			cp $Script_Path/Logos.xclangspec  $spec_dir
+
+			# Create the language metadata directory if it doesn't exist
+			metadata_dir=/Applications/Xcode.app/Contents/SharedFrameworks/SourceModel.framework/Versions/A/Resources/LanguageMetadata/
+			if [ ! -d "$metadata_dir" ]; then
+				mkdir $metadata_dir
+			fi
+
+			# Copy the source code language plist to the metadata directory
+			cp $Script_Path/Xcode.SourceCodeLanguage.Logos.plist  $metadata_dir
+			
 
 			# Remove any cached Xcode plugins
 			rm -rf /private/var/folders/*/*/*/com.apple.DeveloperTools/*/Xcode/PlugInCache.xcplugincache
