@@ -12,10 +12,12 @@ Logos-Xcode brings Logos Syntax Hightlight to Xcode (tested on 11.3).
 5 - (Optional) To create `Logos.xclangspec`, run `python(3) xclangspec_generator.py`.  
 6 - If you want to install to Xcode-beta.app, you can rename it to Xcode.app before installation and revert it after installation.  
 7 - Run `./add_current_uuid.sh`  
-8 - Run `sudo ./install.sh`, to run the installation script.  
+8 - (Xcode 15.3+) Run `./add_current_build.sh`  
+9 - Run `sudo ./install.sh`, to run the installation script.  
 
 ## Credits
 
+* [Modding Plugins back into Xcode](https://bryce.co/xcode-plugin-loader/)
 * [apollographql / xcode-graphql](https://github.com/apollographql/xcode-graphql)
 
 # ------------------------------------------------------------
